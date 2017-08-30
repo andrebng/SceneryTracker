@@ -18,7 +18,7 @@ class FlickrAPI {
     ///   - api_key: generated API-KEY (stored in Constants)
     ///   - parameters: parameters for the HTTP call
     /// - Returns: url for API call
-    class func api(method: String, api_key: String, parameters: String) -> String {
+    public class func api(method: String, api_key: String, parameters: String) -> String {
         return "\(Constants.FLICKR_API_URL)?method=\(method)&api_key=\(api_key)&\(parameters)&format=json&nojsoncallback=1&page=1&accuracy=16&page=1"
         
     }
@@ -31,7 +31,7 @@ class FlickrAPI {
     ///   - photo_id: photo-id
     ///   - secret: secret of photo
     /// - Returns: URL of image
-    class func getPhoto(farm_id: String, server_id: String, photo_id: String, secret: String) -> String {
+    public class func getPhoto(farm_id: String, server_id: String, photo_id: String, secret: String) -> String {
         return "https://farm\(farm_id).staticflickr.com/\(server_id)/\(photo_id)_\(secret).jpg"
     }
     
@@ -41,7 +41,7 @@ class FlickrAPI {
     ///   - lat: latitude of location
     ///   - lon: longitude of location
     ///   - completion: completion handler to retrieve result
-    static func photoSearch(lat: String, lon: String, completion: @escaping (_ success: Bool, _ imageURL: String) -> Void) {
+    open class func photoSearch(lat: String, lon: String, completion: @escaping (_ success: Bool, _ imageURL: String) -> Void) {
         
         let url = FlickrAPI.api(method: "flickr.photos.search", api_key: Constants.FLICKR_API_KEY, parameters: "lat=\(lat)&lon=\(lon)")
         

@@ -14,17 +14,17 @@ import Kingfisher
 class PhotoStream: UIViewController {
     
     //MARK: Variables
-    @IBOutlet var tableView         : UITableView!              // table representing photostream
-    @IBOutlet var startStopButton   : UIBarButtonItem!          // starts location and distance tracking
+    @IBOutlet var tableView         : UITableView!                  // table representing photostream
+    @IBOutlet var startStopButton   : UIBarButtonItem!              // starts location and distance tracking
     
-    var is_started                  = false                     // var for switching start and stop button
-    var sceneryImages               : NSMutableArray = []       // array containing image urls of Flickr
+    private var isStarted           = false                         // var for switching start and stop button
+    fileprivate var sceneryImages   : NSMutableArray = []           // array containing image urls of Flickr
     
     // For location tracking
-    let locationManager             = CLLocationManager()       // location manager
-    var startLocation               : CLLocation!               // first updated location
-    var lastLocation                : CLLocation!               // last updated location
-    var distanceTraveled            = 0.0                       // current distance traveled
+    private let locationManager             = CLLocationManager()   // location manager
+    fileprivate var startLocation           : CLLocation!           // first updated location
+    fileprivate var lastLocation            : CLLocation!           // last updated location
+    var distanceTraveled                    = 0.0                   // current distance traveled
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -40,7 +40,7 @@ class PhotoStream: UIViewController {
     }
     
     /// Sets up the location manager
-    func locationSetup() {
+    private func locationSetup() {
         self.locationManager.requestWhenInUseAuthorization()
         
         if CLLocationManager.locationServicesEnabled(){
@@ -59,9 +59,9 @@ class PhotoStream: UIViewController {
     //MARK: Actions
     @IBAction func clickedStartStop(_ sender: Any) {
         
-        self.is_started = !self.is_started
+        self.isStarted = !self.isStarted
         
-        if self.is_started {
+        if self.isStarted {
             
             distanceTraveled = 0.0
             startLocation = nil
