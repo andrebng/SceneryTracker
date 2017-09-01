@@ -23,9 +23,6 @@ class PhotoStream: UIViewController {
     
     // For location tracking
     fileprivate var locationMngr        : LocationManager?
-    fileprivate var startLocation       : CLLocation!           // first updated location
-    fileprivate var lastLocation        : CLLocation!           // last updated location
-    var distanceTraveled                = 0.0                   // current distance traveled
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -36,9 +33,6 @@ class PhotoStream: UIViewController {
         self.tableView.delegate         = self
         self.tableView.dataSource       = self
         self.tableView.separatorColor   = UIColor.clear
-        
-        // Initialize FlickrAPI
-        flickrAPI = FlickrAPI(withAPIKey: API.FlickrAPIKey)
         
         // Initialize LocationManager Module
         locationMngr = LocationManager()
@@ -52,10 +46,6 @@ class PhotoStream: UIViewController {
         self.isStarted = !self.isStarted
         
         if self.isStarted {
-            
-            distanceTraveled = 0.0
-            startLocation = nil
-            lastLocation = nil
             
             locationMngr?.startUpdatingLocation()
             self.startStopButton.title = "STOP"
