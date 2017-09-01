@@ -32,7 +32,8 @@ class FlickrPhotos : Mappable {
     
 }
 
-class FlickrPhoto : Mappable {
+// NSObject for optional protocol method-parameter
+class FlickrPhoto : NSObject, Mappable {
     
     var farm: NSNumber = 0.0
     var server: String = ""

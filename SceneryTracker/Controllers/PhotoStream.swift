@@ -18,11 +18,11 @@ class PhotoStream: UIViewController {
     @IBOutlet var startStopButton   : UIBarButtonItem!          // starts location and distance tracking
     
     fileprivate var flickrAPI       : FlickrAPI?
-    private var isStarted           = false                     // var for switching start and stop button
+    private var isStarted           : Bool = false              // var for switching start and stop button
     fileprivate var sceneryPhotos   : NSMutableArray = []       // array photos from the Flickr-API
     
     // For location tracking
-    private var locationManager         : CLLocationManager?    // location manager
+    fileprivate var locationMngr        : LocationManager?
     fileprivate var startLocation       : CLLocation!           // first updated location
     fileprivate var lastLocation        : CLLocation!           // last updated location
     var distanceTraveled                = 0.0                   // current distance traveled
@@ -40,27 +40,10 @@ class PhotoStream: UIViewController {
         // Initialize FlickrAPI
         flickrAPI = FlickrAPI(withAPIKey: API.FlickrAPIKey)
         
-        // Init and setup of location services
-        locationSetup()
-    }
-    
-    /// Sets up the location manager
-    private func locationSetup() {
-        
-        self.locationManager = CLLocationManager()
-        self.locationManager?.requestWhenInUseAuthorization()
-        
-        if CLLocationManager.locationServicesEnabled(){
-            self.locationManager?.delegate = self
-            self.locationManager?.desiredAccuracy = kCLLocationAccuracyBest
-            self.locationManager?.distanceFilter = 100                           // updates every 100m
-            self.locationManager?.allowsBackgroundLocationUpdates = true         // allow background location updates
-        } else {
-            let alert = UIAlertController(title: "Error", message: "Please enable the location services", preferredStyle: UIAlertControllerStyle.alert)
-            alert.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.default, handler: nil))
-            self.present(alert, animated: true, completion: nil)
-        }
-        
+        // Initialize LocationManager Module
+        locationMngr = LocationManager()
+        locationMngr?.delegate = self
+        locationMngr?.requestFlickrPhotos = true                // request photos after default setting of 100 m (requires implementation of delegate method *photoAfterLocationUpdate*
     }
     
     //MARK: Actions
@@ -74,66 +57,41 @@ class PhotoStream: UIViewController {
             startLocation = nil
             lastLocation = nil
             
-            locationManager?.startUpdatingLocation()
+            locationMngr?.startUpdatingLocation()
             self.startStopButton.title = "STOP"
         }
         else {
             
-            locationManager?.stopUpdatingLocation()
+            locationMngr?.stopUpdatingLocation()
             self.startStopButton.title = "START"
             self.title = "Distance: 0.00 m"
         }
     }
     
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
-    
 }
 
-
-//MARK: CLLocationManagerDelegate
-extension PhotoStream: CLLocationManagerDelegate {
+//MARK: LocationManager Module Delegate
+extension PhotoStream: LocationModuleDelegate {
+ 
+    func tracingLocation(currentLocation: CLLocation) {
+        self.title = "Distance: \((self.locationMngr?.trimmedDistance())!)"
+    }
     
-    // updated every 100m based on distance-filter
-    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        if startLocation == nil {
-            startLocation = locations.first as CLLocation!
-        } else {
-            let lastDistance = lastLocation.distance(from: locations.last as CLLocation!)
-            distanceTraveled += lastDistance
-            
-            if distanceTraveled >= 100 {
-                
-                let lat = String(lastLocation.coordinate.latitude)
-                let lon = String(lastLocation.coordinate.longitude)
-                
-                flickrAPI?.photoSearch(lat: lat, lon: lon, completion: { (success, result, message) in
-                    if success {
-                        
-                        // result = imageResult if api returned successfully
-                        self.sceneryPhotos.insert(result!, at: 0)                // insert new image on on top
-                        self.tableView.reloadData()
-                        
-                    }
-                    else {
-                        let alert = UIAlertController(title: "Error", message: "An error occured retrieving the image. \(message)", preferredStyle: UIAlertControllerStyle.alert)
-                        alert.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.default, handler: nil))
-                        self.present(alert, animated: true, completion: nil)
-                    }
-                })
-                
-            }
-            
-            let trimmedDistance = String(format: "%.2f", distanceTraveled)
-            
-            self.title = "Distance: \(trimmedDistance) m"
-        }
-        
-        lastLocation = locations.last as CLLocation!
-        
+    func photoAfterLocationUpdate(photo: FlickrPhoto) {
+        self.sceneryPhotos.insert(photo, at: 0)
+        self.tableView.reloadData()
+    }
+    
+    func tracingLocationDidFailWithError(error: Error) {
+        let alert = UIAlertController(title: "Error", message: error.localizedDescription, preferredStyle: UIAlertControllerStyle.alert)
+        alert.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.default, handler: nil))
+        self.present(alert, animated: true, completion: nil)
+    }
+    
+    func errorOccured(withMessage message: String) {
+        let alert = UIAlertController(title: "Error", message: message, preferredStyle: UIAlertControllerStyle.alert)
+        alert.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.default, handler: nil))
+        self.present(alert, animated: true, completion: nil)
     }
     
 }
@@ -149,6 +107,7 @@ extension PhotoStream : UITableViewDelegate, UITableViewDataSource {
         return cellForImage(indexPath: indexPath)
     }
     
+    // Private functions
     private func cellForImage(indexPath: IndexPath) -> UITableViewCell {
         
         var result = UITableViewCell()
