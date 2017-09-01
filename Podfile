@@ -4,6 +4,7 @@ use_frameworks!
 
 target 'SceneryTracker' do
     pod 'Alamofire'
+    pod 'AlamofireObjectMapper'
     pod 'Kingfisher'
 end
 

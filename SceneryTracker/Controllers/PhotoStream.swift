@@ -14,17 +14,18 @@ import Kingfisher
 class PhotoStream: UIViewController {
     
     //MARK: Variables
-    @IBOutlet var tableView         : UITableView!                  // table representing photostream
-    @IBOutlet var startStopButton   : UIBarButtonItem!              // starts location and distance tracking
+    @IBOutlet var tableView         : UITableView!              // table representing photostream
+    @IBOutlet var startStopButton   : UIBarButtonItem!          // starts location and distance tracking
     
-    private var isStarted           = false                         // var for switching start and stop button
-    fileprivate var sceneryImages   : NSMutableArray = []           // array containing image urls of Flickr
+    fileprivate var flickrAPI       : FlickrAPI?
+    private var isStarted           = false                     // var for switching start and stop button
+    fileprivate var sceneryPhotos   : NSMutableArray = []       // array photos from the Flickr-API
     
     // For location tracking
-    private let locationManager             = CLLocationManager()   // location manager
-    fileprivate var startLocation           : CLLocation!           // first updated location
-    fileprivate var lastLocation            : CLLocation!           // last updated location
-    var distanceTraveled                    = 0.0                   // current distance traveled
+    private var locationManager         : CLLocationManager?    // location manager
+    fileprivate var startLocation       : CLLocation!           // first updated location
+    fileprivate var lastLocation        : CLLocation!           // last updated location
+    var distanceTraveled                = 0.0                   // current distance traveled
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -36,18 +37,24 @@ class PhotoStream: UIViewController {
         self.tableView.dataSource       = self
         self.tableView.separatorColor   = UIColor.clear
         
-        self.locationSetup()
+        // Initialize FlickrAPI
+        flickrAPI = FlickrAPI(withAPIKey: API.FlickrAPIKey)
+        
+        // Init and setup of location services
+        locationSetup()
     }
     
     /// Sets up the location manager
     private func locationSetup() {
-        self.locationManager.requestWhenInUseAuthorization()
+        
+        self.locationManager = CLLocationManager()
+        self.locationManager?.requestWhenInUseAuthorization()
         
         if CLLocationManager.locationServicesEnabled(){
-            self.locationManager.delegate = self
-            self.locationManager.desiredAccuracy = kCLLocationAccuracyBest
-            self.locationManager.distanceFilter = 100                           // updates every 100m
-            self.locationManager.allowsBackgroundLocationUpdates = true         // allow background location updates
+            self.locationManager?.delegate = self
+            self.locationManager?.desiredAccuracy = kCLLocationAccuracyBest
+            self.locationManager?.distanceFilter = 100                           // updates every 100m
+            self.locationManager?.allowsBackgroundLocationUpdates = true         // allow background location updates
         } else {
             let alert = UIAlertController(title: "Error", message: "Please enable the location services", preferredStyle: UIAlertControllerStyle.alert)
             alert.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.default, handler: nil))
@@ -67,12 +74,12 @@ class PhotoStream: UIViewController {
             startLocation = nil
             lastLocation = nil
             
-            locationManager.startUpdatingLocation()
+            locationManager?.startUpdatingLocation()
             self.startStopButton.title = "STOP"
         }
         else {
             
-            locationManager.stopUpdatingLocation()
+            locationManager?.stopUpdatingLocation()
             self.startStopButton.title = "START"
             self.title = "Distance: 0.00 m"
         }
@@ -85,6 +92,7 @@ class PhotoStream: UIViewController {
     
     
 }
+
 
 //MARK: CLLocationManagerDelegate
 extension PhotoStream: CLLocationManagerDelegate {
@@ -102,16 +110,16 @@ extension PhotoStream: CLLocationManagerDelegate {
                 let lat = String(lastLocation.coordinate.latitude)
                 let lon = String(lastLocation.coordinate.longitude)
                 
-                FlickrAPI.photoSearch(lat: lat, lon: lon, completion: { (success, result) in
+                flickrAPI?.photoSearch(lat: lat, lon: lon, completion: { (success, result, message) in
                     if success {
                         
                         // result = imageResult if api returned successfully
-                        self.sceneryImages.insert(result, at: 0)                // insert new image on on top
+                        self.sceneryPhotos.insert(result!, at: 0)                // insert new image on on top
                         self.tableView.reloadData()
                         
                     }
                     else {
-                        let alert = UIAlertController(title: "Error", message: "An error occured retrieving the image. \(result)", preferredStyle: UIAlertControllerStyle.alert)
+                        let alert = UIAlertController(title: "Error", message: "An error occured retrieving the image. \(message)", preferredStyle: UIAlertControllerStyle.alert)
                         alert.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.default, handler: nil))
                         self.present(alert, animated: true, completion: nil)
                     }
@@ -134,17 +142,30 @@ extension PhotoStream: CLLocationManagerDelegate {
 extension PhotoStream : UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.sceneryImages.count
+        return self.sceneryPhotos.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        return cellForImage(indexPath: indexPath)
+    }
+    
+    private func cellForImage(indexPath: IndexPath) -> UITableViewCell {
         
-        let cell = tableView.dequeueReusableCell(withIdentifier: "ImageCell") as! ImageCell
+        var result = UITableViewCell()
         
-        // use of Kingfisher for async image loading
-        let url = URL(string: sceneryImages[indexPath.row] as! String)
-        cell.sceneryImage?.kf.setImage(with: url)
+        if let cell = tableView.dequeueReusableCell(withIdentifier: "ImageCell", for: indexPath) as? ImageCell {
+            
+            let photo = sceneryPhotos[indexPath.row] as! FlickrPhoto
+            
+            puts("Photo: \(photo.imageURL as String?)")
+            
+            // use of Kingfisher for async image loading
+            let url = URL(string: photo.imageURL)
+            cell.sceneryImage?.kf.setImage(with: url)
+            
+            result = cell
+        }
         
-        return cell
+        return result
     }
 }

@@ -7,12 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		411E8C571F583C26000A8F36 /* FlickrPhoto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 411E8C561F583C26000A8F36 /* FlickrPhoto.swift */; };
+		411E8C591F583E9B000A8F36 /* FlickrPhotolViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 411E8C581F583E9B000A8F36 /* FlickrPhotolViewModel.swift */; };
 		4122EA7D1F52D6070071C546 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4122EA7C1F52D6070071C546 /* AppDelegate.swift */; };
 		4122EA821F52D6070071C546 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4122EA801F52D6070071C546 /* Main.storyboard */; };
 		4122EA841F52D6070071C546 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4122EA831F52D6070071C546 /* Assets.xcassets */; };
 		4122EA871F52D6070071C546 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4122EA851F52D6070071C546 /* LaunchScreen.storyboard */; };
 		4122EA901F52D6740071C546 /* PhotoStream.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4122EA8F1F52D6740071C546 /* PhotoStream.swift */; };
-		4122EA951F52D67E0071C546 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4122EA921F52D67E0071C546 /* Constants.swift */; };
+		4122EA951F52D67E0071C546 /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4122EA921F52D67E0071C546 /* API.swift */; };
 		4122EA961F52D67E0071C546 /* FlickrAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4122EA931F52D67E0071C546 /* FlickrAPI.swift */; };
 		4122EA971F52D67E0071C546 /* Util.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4122EA941F52D67E0071C546 /* Util.swift */; };
 		4122EA9A1F52D6850071C546 /* ImageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4122EA991F52D6850071C546 /* ImageCell.swift */; };
@@ -22,10 +24,13 @@
 		4122EAA61F52D9840071C546 /* Icon-Small-40.png in Resources */ = {isa = PBXBuildFile; fileRef = 4122EAA01F52D9840071C546 /* Icon-Small-40.png */; };
 		4122EAA71F52D9840071C546 /* Icon-Small-40@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4122EAA11F52D9840071C546 /* Icon-Small-40@2x.png */; };
 		4122EAA81F52D9840071C546 /* Icon-Small-40@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4122EAA21F52D9840071C546 /* Icon-Small-40@3x.png */; };
+		412DE8021F5978B10063E24E /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 412DE8011F5978B10063E24E /* LocationManager.swift */; };
 		AEA39531D97F369B3C1B9795 /* Pods_SceneryTracker.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 813B87CED07A011F27FF0F47 /* Pods_SceneryTracker.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		411E8C561F583C26000A8F36 /* FlickrPhoto.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FlickrPhoto.swift; sourceTree = "<group>"; };
+		411E8C581F583E9B000A8F36 /* FlickrPhotolViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FlickrPhotolViewModel.swift; sourceTree = "<group>"; };
 		4122EA791F52D6070071C546 /* SceneryTracker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SceneryTracker.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4122EA7C1F52D6070071C546 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4122EA811F52D6070071C546 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -33,7 +38,7 @@
 		4122EA861F52D6070071C546 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		4122EA881F52D6070071C546 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4122EA8F1F52D6740071C546 /* PhotoStream.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoStream.swift; sourceTree = "<group>"; };
-		4122EA921F52D67E0071C546 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		4122EA921F52D67E0071C546 /* API.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = API.swift; path = SceneryTracker/Helpers/API/API.swift; sourceTree = SOURCE_ROOT; };
 		4122EA931F52D67E0071C546 /* FlickrAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FlickrAPI.swift; sourceTree = "<group>"; };
 		4122EA941F52D67E0071C546 /* Util.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Util.swift; sourceTree = "<group>"; };
 		4122EA991F52D6850071C546 /* ImageCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageCell.swift; sourceTree = "<group>"; };
@@ -43,6 +48,7 @@
 		4122EAA01F52D9840071C546 /* Icon-Small-40.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-Small-40.png"; sourceTree = "<group>"; };
 		4122EAA11F52D9840071C546 /* Icon-Small-40@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-Small-40@2x.png"; sourceTree = "<group>"; };
 		4122EAA21F52D9840071C546 /* Icon-Small-40@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-Small-40@3x.png"; sourceTree = "<group>"; };
+		412DE8011F5978B10063E24E /* LocationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
 		4D02B3A6078113C96006B9A9 /* Pods-SceneryTracker.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SceneryTracker.release.xcconfig"; path = "Pods/Target Support Files/Pods-SceneryTracker/Pods-SceneryTracker.release.xcconfig"; sourceTree = "<group>"; };
 		670C9E4DB13D566C0903FBE5 /* Pods-SceneryTracker.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SceneryTracker.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SceneryTracker/Pods-SceneryTracker.debug.xcconfig"; sourceTree = "<group>"; };
 		813B87CED07A011F27FF0F47 /* Pods_SceneryTracker.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SceneryTracker.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -60,6 +66,23 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		411E8C541F583BA0000A8F36 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				411E8C561F583C26000A8F36 /* FlickrPhoto.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		411E8C551F583BA0000A8F36 /* View Model */ = {
+			isa = PBXGroup;
+			children = (
+				411E8C581F583E9B000A8F36 /* FlickrPhotolViewModel.swift */,
+			);
+			name = "View Model";
+			path = "Model View";
+			sourceTree = "<group>";
+		};
 		4122EA701F52D6070071C546 = {
 			isa = PBXGroup;
 			children = (
@@ -81,6 +104,8 @@
 		4122EA7B1F52D6070071C546 /* SceneryTracker */ = {
 			isa = PBXGroup;
 			children = (
+				411E8C541F583BA0000A8F36 /* Model */,
+				411E8C551F583BA0000A8F36 /* View Model */,
 				4122EA9B1F52D9840071C546 /* Assets */,
 				4122EA981F52D6850071C546 /* Views */,
 				4122EA911F52D67E0071C546 /* Helpers */,
@@ -105,9 +130,9 @@
 		4122EA911F52D67E0071C546 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
-				4122EA921F52D67E0071C546 /* Constants.swift */,
-				4122EA931F52D67E0071C546 /* FlickrAPI.swift */,
+				412DE8001F5973E70063E24E /* API */,
 				4122EA941F52D67E0071C546 /* Util.swift */,
+				412DE8011F5978B10063E24E /* LocationManager.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -139,6 +164,15 @@
 				4122EAA21F52D9840071C546 /* Icon-Small-40@3x.png */,
 			);
 			path = Icons;
+			sourceTree = "<group>";
+		};
+		412DE8001F5973E70063E24E /* API */ = {
+			isa = PBXGroup;
+			children = (
+				4122EA921F52D67E0071C546 /* API.swift */,
+				4122EA931F52D67E0071C546 /* FlickrAPI.swift */,
+			);
+			path = API;
 			sourceTree = "<group>";
 		};
 		89882289E838F05584F499C5 /* Frameworks */ = {
@@ -264,12 +298,16 @@
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-SceneryTracker/Pods-SceneryTracker-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
+				"${BUILT_PRODUCTS_DIR}/AlamofireObjectMapper/AlamofireObjectMapper.framework",
 				"${BUILT_PRODUCTS_DIR}/Kingfisher/Kingfisher.framework",
+				"${BUILT_PRODUCTS_DIR}/ObjectMapper/ObjectMapper.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AlamofireObjectMapper.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Kingfisher.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ObjectMapper.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -303,10 +341,13 @@
 			files = (
 				4122EA971F52D67E0071C546 /* Util.swift in Sources */,
 				4122EA901F52D6740071C546 /* PhotoStream.swift in Sources */,
+				411E8C571F583C26000A8F36 /* FlickrPhoto.swift in Sources */,
 				4122EA7D1F52D6070071C546 /* AppDelegate.swift in Sources */,
-				4122EA951F52D67E0071C546 /* Constants.swift in Sources */,
+				4122EA951F52D67E0071C546 /* API.swift in Sources */,
 				4122EA9A1F52D6850071C546 /* ImageCell.swift in Sources */,
+				411E8C591F583E9B000A8F36 /* FlickrPhotolViewModel.swift in Sources */,
 				4122EA961F52D67E0071C546 /* FlickrAPI.swift in Sources */,
+				412DE8021F5978B10063E24E /* LocationManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
