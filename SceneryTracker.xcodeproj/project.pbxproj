@@ -25,10 +25,24 @@
 		4122EAA71F52D9840071C546 /* Icon-Small-40@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4122EAA11F52D9840071C546 /* Icon-Small-40@2x.png */; };
 		4122EAA81F52D9840071C546 /* Icon-Small-40@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4122EAA21F52D9840071C546 /* Icon-Small-40@3x.png */; };
 		412DE8021F5978B10063E24E /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 412DE8011F5978B10063E24E /* LocationManager.swift */; };
+		412DE8141F59BEF30063E24E /* FlickrAPITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 412DE8131F59BEF30063E24E /* FlickrAPITests.swift */; };
+		412DE8161F59BF120063E24E /* LocationManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 412DE8151F59BF120063E24E /* LocationManagerTests.swift */; };
 		AEA39531D97F369B3C1B9795 /* Pods_SceneryTracker.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 813B87CED07A011F27FF0F47 /* Pods_SceneryTracker.framework */; };
+		F5F446302709852E25AAA817 /* Pods_SceneryTrackerTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3ED43BBDD176FDB9F1DD59DA /* Pods_SceneryTrackerTests.framework */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		412DE80C1F59BE6C0063E24E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 4122EA711F52D6070071C546 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 4122EA781F52D6070071C546;
+			remoteInfo = SceneryTracker;
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXFileReference section */
+		3ED43BBDD176FDB9F1DD59DA /* Pods_SceneryTrackerTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SceneryTrackerTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		411E8C561F583C26000A8F36 /* FlickrPhoto.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FlickrPhoto.swift; sourceTree = "<group>"; };
 		411E8C581F583E9B000A8F36 /* FlickrPhotolViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FlickrPhotolViewModel.swift; sourceTree = "<group>"; };
 		4122EA791F52D6070071C546 /* SceneryTracker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SceneryTracker.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -49,9 +63,15 @@
 		4122EAA11F52D9840071C546 /* Icon-Small-40@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-Small-40@2x.png"; sourceTree = "<group>"; };
 		4122EAA21F52D9840071C546 /* Icon-Small-40@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-Small-40@3x.png"; sourceTree = "<group>"; };
 		412DE8011F5978B10063E24E /* LocationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
+		412DE8071F59BE6B0063E24E /* SceneryTrackerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SceneryTrackerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		412DE80B1F59BE6C0063E24E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		412DE8131F59BEF30063E24E /* FlickrAPITests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FlickrAPITests.swift; sourceTree = "<group>"; };
+		412DE8151F59BF120063E24E /* LocationManagerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationManagerTests.swift; sourceTree = "<group>"; };
 		4D02B3A6078113C96006B9A9 /* Pods-SceneryTracker.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SceneryTracker.release.xcconfig"; path = "Pods/Target Support Files/Pods-SceneryTracker/Pods-SceneryTracker.release.xcconfig"; sourceTree = "<group>"; };
 		670C9E4DB13D566C0903FBE5 /* Pods-SceneryTracker.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SceneryTracker.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SceneryTracker/Pods-SceneryTracker.debug.xcconfig"; sourceTree = "<group>"; };
+		6EA50C38911AF7A454D61478 /* Pods-SceneryTrackerTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SceneryTrackerTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-SceneryTrackerTests/Pods-SceneryTrackerTests.release.xcconfig"; sourceTree = "<group>"; };
 		813B87CED07A011F27FF0F47 /* Pods_SceneryTracker.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SceneryTracker.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		EC571B3A4A6A9C1E6DD9061B /* Pods-SceneryTrackerTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SceneryTrackerTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SceneryTrackerTests/Pods-SceneryTrackerTests.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,6 +80,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				AEA39531D97F369B3C1B9795 /* Pods_SceneryTracker.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		412DE8041F59BE6B0063E24E /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F5F446302709852E25AAA817 /* Pods_SceneryTrackerTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -87,6 +115,7 @@
 			isa = PBXGroup;
 			children = (
 				4122EA7B1F52D6070071C546 /* SceneryTracker */,
+				412DE8081F59BE6C0063E24E /* SceneryTrackerTests */,
 				4122EA7A1F52D6070071C546 /* Products */,
 				D928ACAF9B4CDDAC1A8B8D59 /* Pods */,
 				89882289E838F05584F499C5 /* Frameworks */,
@@ -97,6 +126,7 @@
 			isa = PBXGroup;
 			children = (
 				4122EA791F52D6070071C546 /* SceneryTracker.app */,
+				412DE8071F59BE6B0063E24E /* SceneryTrackerTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -175,10 +205,37 @@
 			path = API;
 			sourceTree = "<group>";
 		};
+		412DE8081F59BE6C0063E24E /* SceneryTrackerTests */ = {
+			isa = PBXGroup;
+			children = (
+				412DE8111F59BEA90063E24E /* API */,
+				412DE8121F59BEA90063E24E /* LocationManager */,
+				412DE80B1F59BE6C0063E24E /* Info.plist */,
+			);
+			path = SceneryTrackerTests;
+			sourceTree = "<group>";
+		};
+		412DE8111F59BEA90063E24E /* API */ = {
+			isa = PBXGroup;
+			children = (
+				412DE8131F59BEF30063E24E /* FlickrAPITests.swift */,
+			);
+			path = API;
+			sourceTree = "<group>";
+		};
+		412DE8121F59BEA90063E24E /* LocationManager */ = {
+			isa = PBXGroup;
+			children = (
+				412DE8151F59BF120063E24E /* LocationManagerTests.swift */,
+			);
+			path = LocationManager;
+			sourceTree = "<group>";
+		};
 		89882289E838F05584F499C5 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
 				813B87CED07A011F27FF0F47 /* Pods_SceneryTracker.framework */,
+				3ED43BBDD176FDB9F1DD59DA /* Pods_SceneryTrackerTests.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -188,6 +245,8 @@
 			children = (
 				670C9E4DB13D566C0903FBE5 /* Pods-SceneryTracker.debug.xcconfig */,
 				4D02B3A6078113C96006B9A9 /* Pods-SceneryTracker.release.xcconfig */,
+				EC571B3A4A6A9C1E6DD9061B /* Pods-SceneryTrackerTests.debug.xcconfig */,
+				6EA50C38911AF7A454D61478 /* Pods-SceneryTrackerTests.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -215,6 +274,27 @@
 			productReference = 4122EA791F52D6070071C546 /* SceneryTracker.app */;
 			productType = "com.apple.product-type.application";
 		};
+		412DE8061F59BE6B0063E24E /* SceneryTrackerTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 412DE8101F59BE6C0063E24E /* Build configuration list for PBXNativeTarget "SceneryTrackerTests" */;
+			buildPhases = (
+				55A2930695AAFDFCFA69CD99 /* [CP] Check Pods Manifest.lock */,
+				412DE8031F59BE6B0063E24E /* Sources */,
+				412DE8041F59BE6B0063E24E /* Frameworks */,
+				412DE8051F59BE6B0063E24E /* Resources */,
+				C54A38978BFC83CD36FAA354 /* [CP] Embed Pods Frameworks */,
+				5475DBF0623EAAFDA6712E08 /* [CP] Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				412DE80D1F59BE6C0063E24E /* PBXTargetDependency */,
+			);
+			name = SceneryTrackerTests;
+			productName = SceneryTrackerTests;
+			productReference = 412DE8071F59BE6B0063E24E /* SceneryTrackerTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -235,6 +315,12 @@
 							};
 						};
 					};
+					412DE8061F59BE6B0063E24E = {
+						CreatedOnToolsVersion = 8.3.3;
+						DevelopmentTeam = GZN289VFL5;
+						ProvisioningStyle = Automatic;
+						TestTargetID = 4122EA781F52D6070071C546;
+					};
 				};
 			};
 			buildConfigurationList = 4122EA741F52D6070071C546 /* Build configuration list for PBXProject "SceneryTracker" */;
@@ -251,6 +337,7 @@
 			projectRoot = "";
 			targets = (
 				4122EA781F52D6070071C546 /* SceneryTracker */,
+				412DE8061F59BE6B0063E24E /* SceneryTrackerTests */,
 			);
 		};
 /* End PBXProject section */
@@ -269,6 +356,13 @@
 				4122EA841F52D6070071C546 /* Assets.xcassets in Resources */,
 				4122EAA31F52D9840071C546 /* Icon-60.png in Resources */,
 				4122EA821F52D6070071C546 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		412DE8051F59BE6B0063E24E /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -314,6 +408,61 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-SceneryTracker/Pods-SceneryTracker-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
+		5475DBF0623EAAFDA6712E08 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-SceneryTrackerTests/Pods-SceneryTrackerTests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		55A2930695AAFDFCFA69CD99 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-SceneryTrackerTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		C54A38978BFC83CD36FAA354 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-SceneryTrackerTests/Pods-SceneryTrackerTests-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
+				"${BUILT_PRODUCTS_DIR}/AlamofireObjectMapper/AlamofireObjectMapper.framework",
+				"${BUILT_PRODUCTS_DIR}/ObjectMapper/ObjectMapper.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AlamofireObjectMapper.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ObjectMapper.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-SceneryTrackerTests/Pods-SceneryTrackerTests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		C948BAACF80B3ECFFA34F241 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -351,7 +500,24 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		412DE8031F59BE6B0063E24E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				412DE8161F59BF120063E24E /* LocationManagerTests.swift in Sources */,
+				412DE8141F59BEF30063E24E /* FlickrAPITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		412DE80D1F59BE6C0063E24E /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 4122EA781F52D6070071C546 /* SceneryTracker */;
+			targetProxy = 412DE80C1F59BE6C0063E24E /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		4122EA801F52D6070071C546 /* Main.storyboard */ = {
@@ -494,6 +660,36 @@
 			};
 			name = Release;
 		};
+		412DE80E1F59BE6C0063E24E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = EC571B3A4A6A9C1E6DD9061B /* Pods-SceneryTrackerTests.debug.xcconfig */;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				DEVELOPMENT_TEAM = GZN289VFL5;
+				INFOPLIST_FILE = SceneryTrackerTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.SceneryTrackerTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SceneryTracker.app/SceneryTracker";
+			};
+			name = Debug;
+		};
+		412DE80F1F59BE6C0063E24E /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 6EA50C38911AF7A454D61478 /* Pods-SceneryTrackerTests.release.xcconfig */;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				DEVELOPMENT_TEAM = GZN289VFL5;
+				INFOPLIST_FILE = SceneryTrackerTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.SceneryTrackerTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SceneryTracker.app/SceneryTracker";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -514,6 +710,14 @@
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
+		};
+		412DE8101F59BE6C0063E24E /* Build configuration list for PBXNativeTarget "SceneryTrackerTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				412DE80E1F59BE6C0063E24E /* Debug */,
+				412DE80F1F59BE6C0063E24E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
 		};
 /* End XCConfigurationList section */
 	};

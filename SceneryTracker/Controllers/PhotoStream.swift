@@ -78,6 +78,9 @@ extension PhotoStream: LocationModuleDelegate {
     }
     
     func photoAfterLocationUpdate(photo: FlickrPhoto) {
+        
+        puts("Add photo from Flickr")
+        
         self.sceneryPhotos.insert(photo, at: 0)
         self.tableView.reloadData()
     }
@@ -115,8 +118,6 @@ extension PhotoStream : UITableViewDelegate, UITableViewDataSource {
         if let cell = tableView.dequeueReusableCell(withIdentifier: "ImageCell", for: indexPath) as? ImageCell {
             
             let photo = sceneryPhotos[indexPath.row] as! FlickrPhoto
-            
-            puts("Photo: \(photo.imageURL as String?)")
             
             // use of Kingfisher for async image loading
             let url = URL(string: photo.imageURL)
