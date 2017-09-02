@@ -18,11 +18,10 @@ class PhotoStream: UIViewController {
     @IBOutlet var startStopButton   : UIBarButtonItem!          // starts location and distance tracking
     
     fileprivate var flickrAPI       : FlickrAPI?
-    private var isStarted           : Bool = false              // var for switching start and stop button
     fileprivate var sceneryPhotos   : NSMutableArray = []       // array photos from the Flickr-API
+    fileprivate var locationMngr    : LocationManager?          // For location tracking
     
-    // For location tracking
-    fileprivate var locationMngr        : LocationManager?
+    private var isStarted           : Bool = false              // var for switching start and stop button
     
     override func viewDidLoad() {
         super.viewDidLoad()
