@@ -32,7 +32,26 @@ class FlickrAPITests: XCTestCase {
         let lon = "10.166806"
         
         flickrAPI?.photoSearch(lat: lat, lon: lon, completion: { (success, photo, message) in
-            XCTAssert(success, message)
+            XCTAssertTrue(success, message)
+            expct.fulfill()
+        })
+        
+        waitForExpectations(timeout: 10) { (error) in
+            if let error = error {
+                XCTFail("Error: \(error.localizedDescription)")
+            }
+        }
+    }
+    
+    func testPhotoSearchInvalidLocation() {
+        
+        let expct = expectation(description: "Returns photo")
+        
+        let lat = "invalid"
+        let lon = "invalid"
+        
+        flickrAPI?.photoSearch(lat: lat, lon: lon, completion: { (success, photo, message) in
+            XCTAssertFalse(success, message)
             expct.fulfill()
         })
         
