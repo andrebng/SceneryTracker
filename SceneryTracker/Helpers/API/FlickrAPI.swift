@@ -47,15 +47,24 @@ class FlickrAPI {
                 
                 if response.response?.statusCode == 200 {
                     
-                    let flickrPhotos = response.result.value
-                    let photos = flickrPhotos?.photos
+                    guard let flickrPhotos = response.result.value else {
+                        completion(false, nil, "An error occurred")
+                        return
+                    }
+                    guard let photos = flickrPhotos.photos else {
+                        completion(false, nil, "An error occurred")
+                        return
+                    }
                     
-                    if (photos?.photos?.count)! > 0 {
+                    print(flickrPhotos)
+                    print(photos)
+                    
+                    if (photos.photos?.count)! > 0 {
                         
                         // return random photo of returned results
-                        let number = Util.randomIntFrom(start: 0, to: (photos?.photos?.count)! - 1)
+                        let number = Util.randomIntFrom(start: 0, to: (photos.photos?.count)! - 1)
                         
-                        let photo = photos?.photos?[number]
+                        let photo = photos.photos?[number]
                         
                         completion(true, photo, "Success")
                     }
