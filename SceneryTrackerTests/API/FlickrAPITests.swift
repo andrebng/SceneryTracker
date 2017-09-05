@@ -26,43 +26,62 @@ class FlickrAPITests: XCTestCase {
     
     func testPhotoSearchReturnsPhoto() {
         
+        let expct = expectation(description: "Returns photo")
+        
         let lat = "47.572094"
         let lon = "10.166806"
         
         flickrAPI?.photoSearch(lat: lat, lon: lon, completion: { (success, photo, message) in
-            XCTAssert(true, message)
+            XCTAssert(success, message)
+            expct.fulfill()
         })
+        
+        waitForExpectations(timeout: 10) { (error) in
+            if let error = error {
+                XCTFail("Error: \(error.localizedDescription)")
+            }
+        }
     }
     
     func testPhotoImageURL() {
+        
+        let expct = expectation(description: "Returns all fields to create valid image url")
+        
         let lat = "47.572094"
         let lon = "10.166806"
         
         flickrAPI?.photoSearch(lat: lat, lon: lon, completion: { (success, photo, message) in
             if success {
                 
-                if photo?.farm != nil {
-                    XCTAssert(false, "No farm id returned")
+                if photo?.farm == nil {
+                    XCTFail("No farm id returned")
                 }
                 
-                if photo?.server != nil {
-                    XCTAssert(false, "No server id returned")
+                if photo?.server == nil {
+                    XCTFail("No server id returned")
                 }
                 
-                if photo?.photoId != nil {
-                    XCTAssert(false, "No photo id returned")
+                if photo?.photoId == nil {
+                    XCTFail("No photo id returned")
                 }
                 
-                if photo?.secret != nil {
-                    XCTAssert(false, "No secret id returned")
+                if photo?.secret == nil {
+                    XCTFail("No secret id returned")
                 }
                 
                 XCTAssert(true, "Success")
+                expct.fulfill()
             }
             else {
-                XCTAssert(false, message)
+                XCTFail(message)
             }
         })
+        
+        waitForExpectations(timeout: 10) { (error) in
+            if let error = error {
+                XCTFail("Error: \(error.localizedDescription)")
+            }
+        }
     }
     
 }
