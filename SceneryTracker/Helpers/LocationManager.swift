@@ -10,17 +10,20 @@ import CoreLocation
 
 @objc protocol LocationModuleDelegate {
     
+    /// Catch error
+    ///
+    /// - Parameter message: error message
     func errorOccured(withMessage message: String)
     
     /// The updated location-update method
     ///
     /// - Parameter currentLocation: the current location
-    @objc optional func tracingLocation(currentLocation: CLLocation)
+    func tracingLocation(currentLocation: CLLocation)
     
     /// Error handling when location update fails
     ///
     /// - Parameter error: the returned error
-    @objc optional func tracingLocationDidFailWithError(error: Error)
+    func tracingLocationDidFailWithError(error: Error)
     
     /// Retrieves a photo via the Flickr-API based on the current location. Method implementation is required when setting *requestFlickrPhotos* to true
     ///
@@ -41,8 +44,8 @@ class LocationManager : NSObject {
     
     fileprivate var flickrAPI               : FlickrAPI?            // FlickrAPI
     fileprivate var locationManager         : CLLocationManager?
-    fileprivate var startLocation           : CLLocation!           // first updated location
-    fileprivate var lastLocation            : CLLocation!           // last updated location
+    fileprivate var startLocation           : CLLocation?           // first updated location
+    fileprivate var lastLocation            : CLLocation?           // last updated location
     fileprivate var tmpDistanceTraveled     : Double = 0.0          // distance from previous location update
     fileprivate var requestPhoto            : Bool = false          // indicator when photo can be requested
     
@@ -130,6 +133,14 @@ extension LocationManager : CLLocationManagerDelegate {
     /// Calls the FlickrAPI after every *requestedPhotoDistance* meters and resets the *requestPhoto* flag
     private func getImageAfterUpdate() {
         
+        guard let delegate = self.delegate else {
+            return
+        }
+        
+        guard let lastLocation = self.lastLocation else {
+            return
+        }
+        
         if requestPhoto {
             
             requestPhoto = false
@@ -139,10 +150,15 @@ extension LocationManager : CLLocationManagerDelegate {
             
             flickrAPI?.photoSearch(lat: lat, lon: lon, completion: { (success, result, message) in
                 if success {
-                    self.delegate?.photoAfterLocationUpdate!(photo: result!)
+                    
+                    guard let photo = result else {
+                        return
+                    }
+                    
+                    delegate.photoAfterLocationUpdate!(photo: photo)
                 }
                 else {
-                    self.delegate?.errorOccured(withMessage: "An error occured retrieving the image. \(message)")
+                    delegate.errorOccured(withMessage: "An error occured retrieving the image. \(message)")
                 }
             })
         }
@@ -157,6 +173,10 @@ extension LocationManager : CLLocationManagerDelegate {
     private func updateLocation(currentLocation: CLLocation, locations: [CLLocation]){
         
         guard let delegate = self.delegate else {
+            return
+        }
+        
+        guard var lastLocation = self.lastLocation else {
             return
         }
         
@@ -178,7 +198,7 @@ extension LocationManager : CLLocationManagerDelegate {
         
         lastLocation = locations.last as CLLocation!
         
-        delegate.tracingLocation!(currentLocation: currentLocation)
+        delegate.tracingLocation(currentLocation: currentLocation)
     }
     
     /// Custom error handling of failed location update
@@ -190,6 +210,6 @@ extension LocationManager : CLLocationManagerDelegate {
             return
         }
         
-        delegate.tracingLocationDidFailWithError!(error: error)
+        delegate.tracingLocationDidFailWithError(error: error)
     }
 }

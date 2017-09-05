@@ -11,7 +11,7 @@ import AlamofireObjectMapper
 
 class FlickrAPI {
     
-    let flickrAPIKey: String
+    let flickrAPIKey: String?
     
     init(withAPIKey flickrKey: String) {
         self.flickrAPIKey = flickrKey

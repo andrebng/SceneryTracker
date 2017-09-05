@@ -63,7 +63,12 @@ class PhotoStream: UIViewController {
 extension PhotoStream: LocationModuleDelegate {
  
     func tracingLocation(currentLocation: CLLocation) {
-        self.title = "Distance: \((self.locationMngr?.trimmedDistance())!)"
+        
+        guard let trimmedDistance = self.locationMngr?.trimmedDistance() else {
+            return
+        }
+        
+        self.title = "Distance: \(trimmedDistance)"
     }
     
     func photoAfterLocationUpdate(photo: FlickrPhoto) {
