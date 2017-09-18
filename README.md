@@ -16,6 +16,8 @@ Run `pod install` to install Alamofire and Kingfisher.
 
 ## Roadmap
 
+- Apply MVVM
+- Apply Data Binding
 - Add pictures taken with camera
 - Create smart album
 
