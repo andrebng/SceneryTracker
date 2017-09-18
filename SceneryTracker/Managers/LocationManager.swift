@@ -28,7 +28,7 @@ import CoreLocation
     /// Retrieves a photo via the Flickr-API based on the current location. Method implementation is required when setting *requestFlickrPhotos* to true
     ///
     /// - Parameter photo: the returned photo via the Flickr-API
-    @objc optional func photoAfterLocationUpdate(photo: FlickrPhoto)
+    @objc optional func photoAfterLocationUpdate(photo: FlickrPhoto, location: CLLocation)
     
 }
 
@@ -148,17 +148,17 @@ extension LocationManager : CLLocationManagerDelegate {
             let lat = String(lastLocation.coordinate.latitude)
             let lon = String(lastLocation.coordinate.longitude)
             
-            flickrAPI?.photoSearch(lat: lat, lon: lon, completion: { (success, result, message) in
-                if success {
+            flickrAPI?.photoSearch(lat: lat, lon: lon, completion: { (photo, error) in
+                if !(error != nil) {
                     
-                    guard let photo = result else {
+                    guard let photo = photo else {
                         return
                     }
                     
-                    delegate.photoAfterLocationUpdate!(photo: photo)
+                    delegate.photoAfterLocationUpdate!(photo: photo, location: lastLocation)
                 }
                 else {
-                    delegate.errorOccured(withMessage: "An error occured retrieving the image. \(message)")
+                    delegate.errorOccured(withMessage: "An error occured retrieving the image.")
                 }
             })
         }
@@ -176,14 +176,14 @@ extension LocationManager : CLLocationManagerDelegate {
             return
         }
         
-        guard var lastLocation = self.lastLocation else {
-            return
-        }
-        
         // Track distance
         if startLocation == nil {
             startLocation = locations.first as CLLocation!
         } else {
+         
+            guard let lastLocation = self.lastLocation else {
+                return
+            }
             
             let lastDistance = lastLocation.distance(from: locations.last as CLLocation!)
             distanceTraveled += lastDistance
@@ -196,7 +196,7 @@ extension LocationManager : CLLocationManagerDelegate {
             }
         }
         
-        lastLocation = locations.last as CLLocation!
+        self.lastLocation = locations.last as CLLocation!
         
         delegate.tracingLocation(currentLocation: currentLocation)
     }

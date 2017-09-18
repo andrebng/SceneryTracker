@@ -27,6 +27,7 @@
 		412DE8021F5978B10063E24E /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 412DE8011F5978B10063E24E /* LocationManager.swift */; };
 		412DE8141F59BEF30063E24E /* FlickrAPITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 412DE8131F59BEF30063E24E /* FlickrAPITests.swift */; };
 		412DE8161F59BF120063E24E /* LocationManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 412DE8151F59BF120063E24E /* LocationManagerTests.swift */; };
+		415E5B171F6EF42300817243 /* PhotoStreamViewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 415E5B161F6EF42300817243 /* PhotoStreamViewViewModel.swift */; };
 		AEA39531D97F369B3C1B9795 /* Pods_SceneryTracker.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 813B87CED07A011F27FF0F47 /* Pods_SceneryTracker.framework */; };
 		F5F446302709852E25AAA817 /* Pods_SceneryTrackerTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3ED43BBDD176FDB9F1DD59DA /* Pods_SceneryTrackerTests.framework */; };
 /* End PBXBuildFile section */
@@ -52,7 +53,7 @@
 		4122EA861F52D6070071C546 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		4122EA881F52D6070071C546 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4122EA8F1F52D6740071C546 /* PhotoStream.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoStream.swift; sourceTree = "<group>"; };
-		4122EA921F52D67E0071C546 /* API.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = API.swift; path = SceneryTracker/Helpers/API/API.swift; sourceTree = SOURCE_ROOT; };
+		4122EA921F52D67E0071C546 /* API.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = API.swift; path = SceneryTracker/Managers/API/API.swift; sourceTree = SOURCE_ROOT; };
 		4122EA931F52D67E0071C546 /* FlickrAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FlickrAPI.swift; sourceTree = "<group>"; };
 		4122EA941F52D67E0071C546 /* Util.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Util.swift; sourceTree = "<group>"; };
 		4122EA991F52D6850071C546 /* ImageCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageCell.swift; sourceTree = "<group>"; };
@@ -67,6 +68,7 @@
 		412DE80B1F59BE6C0063E24E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		412DE8131F59BEF30063E24E /* FlickrAPITests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FlickrAPITests.swift; sourceTree = "<group>"; };
 		412DE8151F59BF120063E24E /* LocationManagerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationManagerTests.swift; sourceTree = "<group>"; };
+		415E5B161F6EF42300817243 /* PhotoStreamViewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoStreamViewViewModel.swift; sourceTree = "<group>"; };
 		4D02B3A6078113C96006B9A9 /* Pods-SceneryTracker.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SceneryTracker.release.xcconfig"; path = "Pods/Target Support Files/Pods-SceneryTracker/Pods-SceneryTracker.release.xcconfig"; sourceTree = "<group>"; };
 		670C9E4DB13D566C0903FBE5 /* Pods-SceneryTracker.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SceneryTracker.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SceneryTracker/Pods-SceneryTracker.debug.xcconfig"; sourceTree = "<group>"; };
 		6EA50C38911AF7A454D61478 /* Pods-SceneryTrackerTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SceneryTrackerTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-SceneryTrackerTests/Pods-SceneryTrackerTests.release.xcconfig"; sourceTree = "<group>"; };
@@ -106,6 +108,7 @@
 			isa = PBXGroup;
 			children = (
 				411E8C581F583E9B000A8F36 /* FlickrPhotolViewModel.swift */,
+				415E5B161F6EF42300817243 /* PhotoStreamViewViewModel.swift */,
 			);
 			name = "View Model";
 			path = "Model View";
@@ -134,37 +137,35 @@
 		4122EA7B1F52D6070071C546 /* SceneryTracker */ = {
 			isa = PBXGroup;
 			children = (
+				415E5B131F6EF14700817243 /* Application Delegate */,
+				4122EA8E1F52D6740071C546 /* View Controllers */,
+				415E5B141F6EF18100817243 /* Storyboards */,
 				411E8C541F583BA0000A8F36 /* Model */,
-				411E8C551F583BA0000A8F36 /* View Model */,
-				4122EA9B1F52D9840071C546 /* Assets */,
-				4122EA981F52D6850071C546 /* Views */,
-				4122EA911F52D67E0071C546 /* Helpers */,
-				4122EA8E1F52D6740071C546 /* Controllers */,
-				4122EA7C1F52D6070071C546 /* AppDelegate.swift */,
-				4122EA801F52D6070071C546 /* Main.storyboard */,
-				4122EA831F52D6070071C546 /* Assets.xcassets */,
-				4122EA851F52D6070071C546 /* LaunchScreen.storyboard */,
-				4122EA881F52D6070071C546 /* Info.plist */,
+				4122EA911F52D67E0071C546 /* Managers */,
+				4122EA9B1F52D9840071C546 /* Resources */,
+				415E5B151F6EF1A000817243 /* Supporting Files */,
 			);
 			path = SceneryTracker;
 			sourceTree = "<group>";
 		};
-		4122EA8E1F52D6740071C546 /* Controllers */ = {
+		4122EA8E1F52D6740071C546 /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				4122EA981F52D6850071C546 /* Views */,
+				411E8C551F583BA0000A8F36 /* View Model */,
 				4122EA8F1F52D6740071C546 /* PhotoStream.swift */,
 			);
-			path = Controllers;
+			path = "View Controllers";
 			sourceTree = "<group>";
 		};
-		4122EA911F52D67E0071C546 /* Helpers */ = {
+		4122EA911F52D67E0071C546 /* Managers */ = {
 			isa = PBXGroup;
 			children = (
 				412DE8001F5973E70063E24E /* API */,
 				4122EA941F52D67E0071C546 /* Util.swift */,
 				412DE8011F5978B10063E24E /* LocationManager.swift */,
 			);
-			path = Helpers;
+			path = Managers;
 			sourceTree = "<group>";
 		};
 		4122EA981F52D6850071C546 /* Views */ = {
@@ -175,12 +176,13 @@
 			path = Views;
 			sourceTree = "<group>";
 		};
-		4122EA9B1F52D9840071C546 /* Assets */ = {
+		4122EA9B1F52D9840071C546 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				4122EA831F52D6070071C546 /* Assets.xcassets */,
 				4122EA9C1F52D9840071C546 /* Icons */,
 			);
-			path = Assets;
+			path = Resources;
 			sourceTree = "<group>";
 		};
 		4122EA9C1F52D9840071C546 /* Icons */ = {
@@ -229,6 +231,31 @@
 				412DE8151F59BF120063E24E /* LocationManagerTests.swift */,
 			);
 			path = LocationManager;
+			sourceTree = "<group>";
+		};
+		415E5B131F6EF14700817243 /* Application Delegate */ = {
+			isa = PBXGroup;
+			children = (
+				4122EA7C1F52D6070071C546 /* AppDelegate.swift */,
+			);
+			path = "Application Delegate";
+			sourceTree = "<group>";
+		};
+		415E5B141F6EF18100817243 /* Storyboards */ = {
+			isa = PBXGroup;
+			children = (
+				4122EA851F52D6070071C546 /* LaunchScreen.storyboard */,
+				4122EA801F52D6070071C546 /* Main.storyboard */,
+			);
+			path = Storyboards;
+			sourceTree = "<group>";
+		};
+		415E5B151F6EF1A000817243 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				4122EA881F52D6070071C546 /* Info.plist */,
+			);
+			path = "Supporting Files";
 			sourceTree = "<group>";
 		};
 		89882289E838F05584F499C5 /* Frameworks */ = {
@@ -395,6 +422,7 @@
 				"${BUILT_PRODUCTS_DIR}/AlamofireObjectMapper/AlamofireObjectMapper.framework",
 				"${BUILT_PRODUCTS_DIR}/Kingfisher/Kingfisher.framework",
 				"${BUILT_PRODUCTS_DIR}/ObjectMapper/ObjectMapper.framework",
+				"${BUILT_PRODUCTS_DIR}/SwiftOverlays/SwiftOverlays.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
@@ -402,6 +430,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AlamofireObjectMapper.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Kingfisher.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ObjectMapper.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftOverlays.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -490,6 +519,7 @@
 			files = (
 				4122EA971F52D67E0071C546 /* Util.swift in Sources */,
 				4122EA901F52D6740071C546 /* PhotoStream.swift in Sources */,
+				415E5B171F6EF42300817243 /* PhotoStreamViewViewModel.swift in Sources */,
 				411E8C571F583C26000A8F36 /* FlickrPhoto.swift in Sources */,
 				4122EA7D1F52D6070071C546 /* AppDelegate.swift in Sources */,
 				4122EA951F52D67E0071C546 /* API.swift in Sources */,
@@ -638,7 +668,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = GZN289VFL5;
-				INFOPLIST_FILE = SceneryTracker/Info.plist;
+				INFOPLIST_FILE = "SceneryTracker/Supporting Files/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.SceneryTracker;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -652,7 +682,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = GZN289VFL5;
-				INFOPLIST_FILE = SceneryTracker/Info.plist;
+				INFOPLIST_FILE = "SceneryTracker/Supporting Files/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.SceneryTracker;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -718,6 +748,7 @@
 				412DE80F1F59BE6C0063E24E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

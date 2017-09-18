@@ -9,7 +9,17 @@
 import Alamofire
 import AlamofireObjectMapper
 
-class FlickrAPI {
+enum DataManagerError: Error {
+    case unknown
+    case failedRequest
+    case invalidResponse
+}
+
+final class FlickrAPI {
+    
+    typealias PhotoDataCompletion = (FlickrPhoto?, DataManagerError?) -> ()
+    
+    // MARK: Properties
     
     let flickrAPIKey: String?
     
@@ -35,54 +45,44 @@ class FlickrAPI {
     ///   - lat: latitude of location
     ///   - lon: longitude of location
     ///   - completion: completion handler to retrieve result
-    public func photoSearch(lat: String, lon: String, completion: @escaping (_ success: Bool, _ result: FlickrPhoto?, _ message: String) -> Void) {
+    public func photoSearch(lat: String, lon: String, completion: @escaping PhotoDataCompletion) {
         
         let url = api(method: "flickr.photos.search", api_key: API.FlickrAPIKey, parameters: "lat=\(lat)&lon=\(lon)")
         
         // make a call to the "flickr.photos.search"-API to retrieve photos of given location
         Alamofire.request(url).responseObject { (response: DataResponse<FlickrPhotosResult>) in
+            self.didFetchPhotoData(response: response, completion: completion)
+        }
+    }
+    
+    private func didFetchPhotoData(response: DataResponse<FlickrPhotosResult>, completion: PhotoDataCompletion) {
+        switch response.result {
+        case .success:
             
-            switch response.result {
-            case .success:
+            if response.response?.statusCode == 200 {
                 
-                if response.response?.statusCode == 200 {
-                    
-                    guard let flickrPhotos = response.result.value else {
-                        completion(false, nil, "An error occurred")
-                        return
-                    }
-                    guard let photos = flickrPhotos.photos else {
-                        completion(false, nil, "An error occurred")
-                        return
-                    }
-                    
-                    print(flickrPhotos)
-                    print(photos)
-                    
-                    if (photos.photos?.count)! > 0 {
-                        
+                if let flickrPhotos = response.result.value, let photos = flickrPhotos.photos, let photosCount = photos.photos?.count {
+                    if photosCount > 0 {
                         // return random photo of returned results
                         let number = Util.randomIntFrom(start: 0, to: (photos.photos?.count)! - 1)
                         
                         let photo = photos.photos?[number]
-                        
-                        completion(true, photo, "Success")
+                        completion(photo, nil)
                     }
-                    else {
-                        completion(false, nil, "No photos found")
-                    }
-                    
                 }
                 else {
-                    completion(false, nil, "Status code: \(response.response?.statusCode ?? -1)")
+                    completion(nil, .invalidResponse)
                 }
                 
-                break
-            case .failure:
-                
-                completion(false, nil, "An unknown error occured. Please try again later.")
-                break
             }
+            else {
+                completion(nil, .failedRequest)
+            }
+            
+            break
+        case .failure:
+            completion(nil, .failedRequest)
+            break
         }
     }
     

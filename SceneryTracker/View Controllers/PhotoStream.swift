@@ -10,6 +10,7 @@ import UIKit
 import CoreLocation
 import HealthKit
 import Kingfisher
+import SwiftOverlays
 
 class PhotoStream: UIViewController {
     
@@ -17,9 +18,9 @@ class PhotoStream: UIViewController {
     @IBOutlet var tableView         : UITableView!              // table representing photostream
     @IBOutlet var startStopButton   : UIBarButtonItem!          // starts location and distance tracking
     
-    fileprivate var flickrAPI       : FlickrAPI?
     fileprivate var sceneryPhotos   : NSMutableArray = []       // array photos from the Flickr-API
     fileprivate var locationMngr    : LocationManager?          // For location tracking
+    fileprivate var viewModel       : PhotoStreamViewViewModel! // View Model of Photo Stream
     
     private var isStarted           : Bool = false              // var for switching start and stop button
     
@@ -27,6 +28,21 @@ class PhotoStream: UIViewController {
         super.viewDidLoad()
         
         self.title = "Distance: 0.00 m"
+        
+        viewModel = PhotoStreamViewViewModel()
+        
+        viewModel.didUpdatePhotos = { [unowned self] (photos) in
+            self.tableView.reloadData()
+        }
+        
+        viewModel.queryingDidChange = { [unowned self] (querying) in
+            if querying {
+                self.showWaitOverlayWithText("Loading images...")
+            }
+            else {
+                self.removeAllOverlays()
+            }
+        }
         
         // table view setup
         self.tableView.delegate         = self
@@ -71,12 +87,10 @@ extension PhotoStream: LocationModuleDelegate {
         self.title = "Distance: \(trimmedDistance)"
     }
     
-    func photoAfterLocationUpdate(photo: FlickrPhoto) {
+    func photoAfterLocationUpdate(photo: FlickrPhoto, location: CLLocation) {
         
         puts("Add photo from Flickr")
-        
-        self.sceneryPhotos.insert(photo, at: 0)
-        self.tableView.reloadData()
+        self.viewModel.location = location
     }
     
     func tracingLocationDidFailWithError(error: Error) {
@@ -97,7 +111,7 @@ extension PhotoStream: LocationModuleDelegate {
 extension PhotoStream : UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.sceneryPhotos.count
+        return self.viewModel.numberOfPhotos
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -107,19 +121,14 @@ extension PhotoStream : UITableViewDelegate, UITableViewDataSource {
     // Private functions
     private func cellForImage(indexPath: IndexPath) -> UITableViewCell {
         
-        var result = UITableViewCell()
-        
-        if let cell = tableView.dequeueReusableCell(withIdentifier: "ImageCell", for: indexPath) as? ImageCell {
-            
-            let photo = sceneryPhotos[indexPath.row] as! FlickrPhoto
-            
-            // use of Kingfisher for async image loading
-            let url = URL(string: photo.imageURL)
-            cell.sceneryImage?.kf.setImage(with: url)
-            
-            result = cell
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: ImageCell.reuseIdentifier, for: indexPath) as? ImageCell else {
+            fatalError("Unexpected Table View Cell")
         }
         
-        return result
+        if let viewModel = viewModel.viewModelForPhoto(at: indexPath.row) {
+            cell.configure(withViewModel: viewModel)
+        }
+        
+        return cell
     }
 }

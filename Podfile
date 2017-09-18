@@ -6,6 +6,7 @@ target 'SceneryTracker' do
     pod 'Alamofire'
     pod 'AlamofireObjectMapper'
     pod 'Kingfisher'
+    pod 'SwiftOverlays'
 end
 
 target 'SceneryTrackerTests' do
