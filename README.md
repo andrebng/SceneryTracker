@@ -4,6 +4,8 @@
 
 Uses iOS 10 and Apple's location services and Flickr's photo search API. This app tracks the walking distance, pulls a picture  of the current location with help of the Flickr-API every 100m and adds it to a photostream. 
 
+Uses MVVM and Data Binding.
+
 |![PhotoStream](/SceneryTracker_Screenshot.png?raw=true "Photo Stream")
 
 ## Requirements
